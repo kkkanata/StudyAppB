@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="studyApp.QuestionCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:studyApp"
+             mc:Ignorable="d" d:DesignWidth="800" Height="100">
+    
+    <Border BorderBrush="Black" BorderThickness="1,1,1,1">
+        <Grid x:Name="Load" Loaded="Load_Loaded">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="statusText"
+                               Content="{Binding stateText,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:QuestionCell}}}"
+                               VerticalAlignment="Bottom"
+                               Grid.Column="0"
+                               FontSize="30"/>
+            <TextBlock x:Name="requestTitleText"
+                               Text="{Binding requestText,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:QuestionCell}}}"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Left"
+                               TextAlignment="Center"
+                               Grid.Column="1"
+                               FontSize="40"/>
+            <Button x:Name="continueButton"
+                                Grid.Column="2"
+                                Margin="5"
+                                Click="continueButton_Click" IsEnabled="False">
+                <Hyperlink TextDecorations="None" Click="continueButton_Click" NavigateUri="{Binding cButton,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:QuestionCell}}}">
+                    <Label FontSize="30" Content=" 　　続きから 　　"/>
+                </Hyperlink>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="1"
+                                BorderBrush="#FFDDDDDD"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FF707070"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="#FFCDCDCD"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="4" RenderingBias="Performance" ShadowDepth="5"/>
+                </Button.Effect>
+
+            </Button>
+            <Button x:Name="fromTheBeginingButton"
+                                Grid.Column="3"
+                                Background="Red"
+                                Foreground="White"
+                                Margin="5"
+                                Click="fromTheBeginingButton_Click">
+                <Hyperlink TextDecorations="None" Click="fromTheBeginingButton_Click" NavigateUri="{Binding fbButton,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:QuestionCell}}}">
+                    <Label FontSize="30">　　最初から 　　</Label>
+                </Hyperlink>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="1"
+                                BorderBrush="#FFDDDDDD"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10">
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="White"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="4" RenderingBias="Performance" ShadowDepth="5"/>
+                </Button.Effect>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

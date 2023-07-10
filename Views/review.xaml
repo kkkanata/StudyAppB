@@ -1,0 +1,63 @@
+﻿<Page x:Class="studyApp.Views.review"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:studyApp.Views"
+      xmlns:studyApp="clr-namespace:studyApp"
+      mc:Ignorable="d" 
+      x:Name="root"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="review">
+
+    <Grid Background="#FFF0F0F0">
+        <Label x:Name="titleText" Content="復習" HorizontalAlignment="Left" Height="71" Margin="10,10,0,0" VerticalAlignment="Top" Width="114" FontSize="48" FontWeight="Bold"/>
+
+        <ItemsControl ItemsSource="{Binding requestNameLists}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label x:Name="requestNameText" Content="{Binding requestNameText}" HorizontalAlignment="Left" Height="48" Margin="108,29,0,0" VerticalAlignment="Top" Width="257" FontSize="30" FontWeight="Bold"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button x:Name="returnToGradeAndInfomationButton" Content="成績情報へ戻る" HorizontalAlignment="Right" Height="61" Margin="0,16,28,0" VerticalAlignment="Top" Width="204" FontSize="24" Background="White" Click="returnToGradeAndInfomationButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="2" BorderBrush="Black" Background="white" CornerRadius="10">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <ScrollViewer Margin="10,94,10,10" BorderBrush="Black" Foreground="Black" OpacityMask="Black" Background="White">
+            <StackPanel x:Name="QAndA" Height="344" VerticalAlignment="Top">
+                <Label x:Name="accidentText" FontSize="30" FontWeight="Bold" Content="作業事故"/>
+                <ItemsControl ItemsSource="{Binding accidentLists}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <studyApp:UserControl1
+                                questiontext="{Binding questiontext}"
+                                answertext="{Binding accidenttext}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding misstexts}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Label x:Name="missText" FontSize="30" FontWeight="Bold" Content="{Binding misscount}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding missLists}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <studyApp:UserControl1
+                                questiontext="{Binding questiontext}"
+                                answertext="{Binding misstext}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

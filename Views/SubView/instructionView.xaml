@@ -1,0 +1,48 @@
+﻿<Window x:Class="studyApp.Views.SubView.instructionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:studyApp.Views.SubView"
+        mc:Ignorable="d"
+        Title="instructionView" Height="450" Width="800" WindowStyle="None">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="btnTemplate"
+                         TargetType="Button">
+            <Border Name="border"
+                BorderThickness="3"
+                BorderBrush="DarkGray"
+                Background="{TemplateBinding Background}"
+                CornerRadius="10">
+                <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter TargetName="border"
+                            Property="Background"
+                            Value="DarkGray" />
+                    <Setter Property="Foreground"
+                            Value="White" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Width="800" Height="450">
+            <StackPanel Width="800" Height="450" Margin="0">
+                <Label x:Name="commandScreenText" Content="指令画面" FontSize="36" Margin="15,15,614,352" Height="56"/>
+                <ListBox x:Name="vehicleInformationImage" HorizontalAlignment="Left" Height="248" Margin="15,-456,0,0" Width="486" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Black" Foreground="White" FontSize="20"/>
+                <Image x:Name="vehicleImage" Source="{Binding}" Height="190" Margin="515,-449,20,5"/>
+                <Button x:Name="commandScreenCloseButton" Content="閉じる" HorizontalAlignment="Left" Height="71" Margin="15,-95,0,0" Width="757" FontSize="30" Template="{StaticResource btnTemplate}" Background="White" Click="commandScreenCloseButton_Click">
+                    <Button.Effect>
+                        <DropShadowEffect Opacity="0.6"/>
+                    </Button.Effect>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Viewbox>
+</Window>
